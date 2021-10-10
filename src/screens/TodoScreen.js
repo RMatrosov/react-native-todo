@@ -1,8 +1,11 @@
-import {StyleSheet, Text, View, TouchableOpacity, Button} from 'react-native';
+import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import React, {useState} from 'react';
+import {AntDesign, FontAwesome} from '@expo/vector-icons'
 import {THEME} from "../theme";
 import {AppCard} from "../components/ui/Card";
 import {EditModal} from "../components/editModal";
+import {AppTextBold} from "../components/ui/AppTextBold";
+import {AppButton} from "../components/ui/AppButton";
 
 export const TodoScreen = ({goBack, todo, onRemove, onSave}) => {
 
@@ -21,22 +24,27 @@ export const TodoScreen = ({goBack, todo, onRemove, onSave}) => {
             visible={modal}
             onCancel={() => setModal(false)}/>
         <AppCard style={styles.card}>
-          <Text style={styles.title}>{todo.title}</Text>
-          <Button
+          <AppTextBold style={styles.title}>{todo.title}</AppTextBold>
+          <AppButton
               onPress={() => setModal(true)}
-              title='edit'/>
+              >
+            <FontAwesome name='edit' size={20}/>
+          </AppButton>
         </AppCard>
         <View style={styles.buttons}>
           <View style={styles.button}>
-            <Button title='back'
-                    color={THEME.GREY_COLOR}
-                    onPress={goBack}/>
+            <AppButton title='back'
+                       color={THEME.GREY_COLOR}
+                       onPress={goBack}>
+              <AntDesign name='back' size={20} color='#fff'/>
+            </AppButton>
           </View>
           <View style={styles.button}>
-            <Button title='delete'
-
-                    color={THEME.DANGER_COLOR}
-                    onPress={() => onRemove(todo.id)}/>
+            <AppButton
+                color={THEME.DANGER_COLOR}
+                onPress={() => onRemove(todo.id)}>
+              <FontAwesome name='remove' size={20}/>
+            </AppButton>
           </View>
         </View>
       </View>
@@ -54,7 +62,7 @@ const styles = StyleSheet.create({
     padding: 15
   },
   button: {
-    width: '40%'
+    width: Dimensions.get('window').width / 3
   },
   title: {
     fontSize: 20

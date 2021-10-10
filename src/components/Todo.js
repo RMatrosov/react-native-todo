@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {AppText} from "./ui/AppText";
 
 export const Todo = ({todo, onRemove, onOpen}) => {
 
@@ -9,7 +10,7 @@ export const Todo = ({todo, onRemove, onOpen}) => {
           onPress={() => onOpen(todo.id)}
           onLongPress={() => onRemove(todo.id)}>
         <View style={styles.todo}>
-          <Text>{todo.title}</Text>
+          <AppText>{todo.title}</AppText>
         </View>
       </TouchableOpacity>
   );
@@ -25,5 +26,4 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10
   },
-
 })

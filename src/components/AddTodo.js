@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Button, StyleSheet, TextInput, View, Alert} from 'react-native';
+import {AntDesign} from '@expo/vector-icons'
+import {StyleSheet, TextInput, View, Alert, Keyboard} from 'react-native';
 import {THEME} from "../theme";
 
 export const AddTodo = ({onSubmit}) => {
@@ -10,6 +11,7 @@ export const AddTodo = ({onSubmit}) => {
     if (inputValue.trim()) {
       onSubmit(inputValue);
       setInputValue('');
+      Keyboard.dismiss()
     } else {
       Alert.alert('Not valid value')
     }
@@ -23,9 +25,14 @@ export const AddTodo = ({onSubmit}) => {
                    placeholder='Write something...'
                    autoCorrect={false}
                    autoCapitalize='none'
-                   /*keyboardType='number-pad'*/
+            /*keyboardType='number-pad'*/
         />
-        <Button title='add' style={styles.button} onPress={pressHandler}/>
+        <AntDesign.Button
+            name='pluscircleo'
+            onPress={pressHandler}>
+          add
+        </AntDesign.Button>
+        {/*<Button title='add' style={styles.button} onPress={pressHandler}/>*/}
       </View>
   );
 };
